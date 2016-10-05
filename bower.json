@@ -1,0 +1,15 @@
+{
+  "name": "ccorp_project",
+  "authors": [
+    "isalcedo <ignacio@isalcedo.com>"
+  ],
+  "description": "Ccorp Tasks",
+  "main": "index.html",
+  "license": "GPL-3.0",
+  "homepage": "ccorp.orucode.com",
+  "private": true,
+  "dependencies": {
+    "foundation-sites": "^6.2.3",
+    "angular": "angularjs#^1.5.8"
+  }
+}

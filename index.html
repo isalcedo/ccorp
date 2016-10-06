@@ -14,6 +14,7 @@
       <div class="large-12 columns">
         <h3>Clever Weather Tool</h3>
         <p>You can check the weather by providing your current location or find it by ZIP code or country</p>
+
         <section ng-app="getWeather" ng-init="icon=''" ng-controller="getWeatherController">
           <div class="row">
             <div class="large-6 columns">
@@ -36,16 +37,33 @@
                   </div>
                 </div>
               </form>
-              <p class="help-text" id="zipCountryHelp">The ZIP Code is not mandatory. You can just select a country to get the weather of the capital.</p>
+              <p class="help-text" id="zipCountryHelp">The ZIP Code is not mandatory. You can just select a country to get its capital weather.</p>
             </div>
           </div> 
 
-          <div class="row" id="weather_data">
-            <div class="large-12 columns" ng-if="data">
-              <p>Weather Icon : <img ng-src="{{icon}}" alt="Weather Icon"></p>
+          <div id="weather_data">
+            <div ng-if="data">
+              <div class="row">
+                <div class="large-12 columns tec-info">
+                  <p><span>Geek info.</span> Longitude: {{data.coord.lon}} - Latitude: {{data.coord.lat}}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="large-6 columns">
+                  <h4 class="title">Location</h4>
+                  <p>This is the Weather for {{data.name}} in {{data.sys.country}}.</p>
+                  <p>The sunrise time is at {{sunrise}} and sunset is at {{sunset}}.</p>
+                </div>
+                <div class="large-6 columns">
+                  <h4 class="title">Weather</h4>
+                  <p>Weather is: {{data.weather[0].main}}, with {{data.weather[0].description}} <img ng-src="{{icon}}" alt="Weather Icon"></p>
+                  <p>The current temperature is {{data.main.temp}} ºC</p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
+
       </div>
     </div>
 

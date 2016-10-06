@@ -22,6 +22,7 @@ weatherApp.controller('getWeatherController', function($scope, $http) {
 			});
 
 		} else {
+
 			if (navigator.geolocation) {
 				var startPos;
 
@@ -31,8 +32,13 @@ weatherApp.controller('getWeatherController', function($scope, $http) {
 					lon  = startPos.coords.longitude;
 					$http.get("http://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lon+"&units=metric&APPID=aa8521fe973ae615bd42f0b20a0e47c6")
 					.then(function(response) {
-						$scope.data = response.data;
-						$scope.icon = "http://openweathermap.org/img/w/"+response.data.weather[0].icon+".png";
+						$scope.data    = response.data;
+						$scope.icon    = "http://openweathermap.org/img/w/"+response.data.weather[0].icon+".png";
+						
+						var sunrise    = new Date(response.data.sys.sunrise*1000);
+						var sunset     = new Date(response.data.sys.sunset*1000);
+						$scope.sunrise = sunrise.getHours()+":"+sunrise.getMinutes();
+ 						$scope.sunset  = sunset.getHours()+":"+sunset.getMinutes();
 						angular.element('#weather_data').slideDown();
 					});
 				};
@@ -42,10 +48,10 @@ weatherApp.controller('getWeatherController', function($scope, $http) {
 				}
 
 				navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
-			}
-			else {
+			} else {
 				console.log('Geolocation is not supported.');
 			}
+
 		}
 	}
 	$scope.askZip = function() {

@@ -6,13 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ccorp - Task 1</title>
     <link rel="stylesheet" href="libs/foundation-sites/dist/foundation-flex.min.css">
-
+    <link rel="stylesheet" href="libs/weather-icons/css/weather-icons.min.css">
     <link rel="stylesheet" href="assets/css/app.css">
   </head>
   <body>
     <div class="row">
       <div class="large-12 columns">
-        <h1>Soon Ccorp - Task 1</h1>
+        <h3>Clever Weather Tool</h3>
+        <p>You can check the Weather by providing your current location or a Zip Code</p>
+        <section ng-app="getWeather" ng-init="icon=''" ng-controller="getWeatherController">
+          <div class="row">
+            <div class="large-6 columns">
+              <a class="btn_affirmative" href="javascript:void(0)" ng-click="getGeo()">Get my location</a>
+            </div>
+            <div class="large-6 columns">
+              <a class="btn_negative" href="javascript:void(0)" ng-click="askZip()">I have a Zip Code</a>
+            </div>
+          </div>
+          <div class="row zip_code">
+            <div class="large-12 columns">
+              <form id="ask_zip_code">
+                <div class="input-group">
+                  <input type="text" class="input-group-field" id="input_zip_code" name="input_zip_code">
+                  <div class="input-group-button">
+                    <a class="button">Good</a>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div> 
+
+          <div class="row" id="weather_data">
+            <div class="large-12 columns" ng-if="data">
+              <p>Weather Icon : <img ng-src="{{icon}}" alt="Weather Icon"></p>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
 

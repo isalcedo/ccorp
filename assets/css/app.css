@@ -4,3 +4,7 @@ div.zip_code {
 #weather_data {
 	display: none;
 }
+#ask_zip_code select {
+	width: 30%;
+	margin: 0;
+}

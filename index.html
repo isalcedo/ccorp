@@ -6,33 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ccorp - Task 1</title>
     <link rel="stylesheet" href="libs/foundation-sites/dist/foundation-flex.min.css">
-    <link rel="stylesheet" href="libs/weather-icons/css/weather-icons.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/app.css">
   </head>
   <body>
     <div class="row">
       <div class="large-12 columns">
         <h3>Clever Weather Tool</h3>
-        <p>You can check the Weather by providing your current location or a Zip Code</p>
+        <p>You can check the weather by providing your current location or find it by ZIP code or country</p>
         <section ng-app="getWeather" ng-init="icon=''" ng-controller="getWeatherController">
           <div class="row">
             <div class="large-6 columns">
               <a class="btn_affirmative" href="javascript:void(0)" ng-click="getGeo()">Get my location</a>
             </div>
             <div class="large-6 columns">
-              <a class="btn_negative" href="javascript:void(0)" ng-click="askZip()">I have a Zip Code</a>
+              <a class="btn_negative" href="javascript:void(0)" ng-click="askZip()">Find by ZIP Code or Country</a>
             </div>
           </div>
           <div class="row zip_code">
             <div class="large-12 columns">
               <form id="ask_zip_code">
                 <div class="input-group">
-                  <input type="text" class="input-group-field" id="input_zip_code" name="input_zip_code">
+                  <input type="text" placeholder="ZIP Code" aria-describedby="zipCountryHelp" class="input-group-field" id="input_zip_code" name="input_zip_code" ng-model="input_zip_code">
+                  <select class="input-group-field" ng-options="item as item.name for item in items track by item.alpha2" ng-model="select_countries">
+                    <option value="" disabled="">Select a country</option>
+                  </select>
                   <div class="input-group-button">
-                    <a class="button">Good</a>
+                    <a href="javascript:void(0)" ng-click="getGeo(input_zip_code, select_countries)" class="button"><i class="material-icons">my_location</i></a>
                   </div>
                 </div>
               </form>
+              <p class="help-text" id="zipCountryHelp">The ZIP Code is not mandatory. You can just select a country to get the weather of the capital.</p>
             </div>
           </div> 
 

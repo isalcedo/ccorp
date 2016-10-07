@@ -52,7 +52,7 @@
                 <div class="large-6 columns">
                   <h4 class="title">Location</h4>
                   <p>This is the Weather for {{data.name}} in {{data.sys.country}}.</p>
-                  <p>The sunrise time is at {{sunrise}} and sunset is at {{sunset}}.</p>
+                  <p>Sunrise is at {{sunrise | date:'HH:mm'}} and sunset is at {{sunset | date:'HH:mm'}}.</p>
                 </div>
                 <div class="large-6 columns">
                   <h4 class="title">Weather</h4>

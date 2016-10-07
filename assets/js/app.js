@@ -5,6 +5,8 @@ AngularJS for complex stuff.
 $(document).foundation()
 
 var weatherApp = angular.module('getWeather', []);
+var sunrise;
+var sunset;
 
 weatherApp.controller('getWeatherController', function($scope, $http) {
 	$http.get('assets/js/countries.json').success(function(data) {
@@ -13,11 +15,16 @@ weatherApp.controller('getWeatherController', function($scope, $http) {
 
 	$scope.getGeo = function( zip_code, country_code ) {
 		if (typeof zip_code !== 'undefined' || typeof country_code !== 'undefined' ) {
-			console.log(country_code);
+			if (typeof zip_code == 'undefined') {
+				zip_code = '';
+			} 
 			$http.get("http://api.openweathermap.org/data/2.5/weather?zip="+ zip_code +","+ country_code.alpha2 +"&units=metric&APPID=aa8521fe973ae615bd42f0b20a0e47c6")
 			.then(function(response) {
 				$scope.data = response.data;
 				$scope.icon = "http://openweathermap.org/img/w/"+response.data.weather[0].icon+".png";
+
+				$scope.sunrise = new Date(response.data.sys.sunrise*1000);
+				$scope.sunset  = new Date(response.data.sys.sunset*1000);
 				angular.element('#weather_data').slideDown();
 			});
 
@@ -32,13 +39,12 @@ weatherApp.controller('getWeatherController', function($scope, $http) {
 					lon  = startPos.coords.longitude;
 					$http.get("http://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lon+"&units=metric&APPID=aa8521fe973ae615bd42f0b20a0e47c6")
 					.then(function(response) {
+						console.log(response);
 						$scope.data    = response.data;
 						$scope.icon    = "http://openweathermap.org/img/w/"+response.data.weather[0].icon+".png";
 						
-						var sunrise    = new Date(response.data.sys.sunrise*1000);
-						var sunset     = new Date(response.data.sys.sunset*1000);
-						$scope.sunrise = sunrise.getHours()+":"+sunrise.getMinutes();
- 						$scope.sunset  = sunset.getHours()+":"+sunset.getMinutes();
+						$scope.sunrise = new Date(response.data.sys.sunrise*1000);
+						$scope.sunset  = new Date(response.data.sys.sunset*1000);
 						angular.element('#weather_data').slideDown();
 					});
 				};

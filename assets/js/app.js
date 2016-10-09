@@ -18,10 +18,10 @@ weatherApp.controller('getWeatherController', function($scope, $http, $filter) {
 			if (typeof zip_code == 'undefined') {
 				zip_code = '';
 			} 
-			$http.get("http://api.openweathermap.org/data/2.5/weather?zip="+ zip_code +","+ country_code.alpha2 +"&units=metric&APPID=aa8521fe973ae615bd42f0b20a0e47c6")
+			$http.get("https://api.openweathermap.org/data/2.5/weather?zip="+ zip_code +","+ country_code.alpha2 +"&units=metric&APPID=aa8521fe973ae615bd42f0b20a0e47c6")
 			.then(function(response) {
 				$scope.data = response.data;
-				$scope.icon = "http://openweathermap.org/img/w/"+response.data.weather[0].icon+".png";
+				$scope.icon = "https://openweathermap.org/img/w/"+response.data.weather[0].icon+".png";
 
 				$http.get("https://maps.googleapis.com/maps/api/timezone/json?location="+response.data.coord.lat+","+response.data.coord.lon+"&timestamp="+response.data.sys.sunrise+"&key=AIzaSyBOv4sSajL69MzT9ADx1y3-BHkaH7-sI-M")
 				.then(function(Gresponse) {
@@ -46,15 +46,15 @@ weatherApp.controller('getWeatherController', function($scope, $http, $filter) {
 			if (navigator.geolocation) {
 				var startPos;
 				angular.element('div.zip_code').slideUp();
-				
+
 				var geoSuccess = function(position) {
 					startPos = position;
 					lat  = startPos.coords.latitude;
 					lon  = startPos.coords.longitude;
-					$http.get("http://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lon+"&units=metric&APPID=aa8521fe973ae615bd42f0b20a0e47c6")
+					$http.get("https://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lon+"&units=metric&APPID=aa8521fe973ae615bd42f0b20a0e47c6")
 					.then(function(response) {
 						$scope.data    = response.data;
-						$scope.icon    = "http://openweathermap.org/img/w/"+response.data.weather[0].icon+".png";
+						$scope.icon    = "https://openweathermap.org/img/w/"+response.data.weather[0].icon+".png";
 
 						$http.get("https://maps.googleapis.com/maps/api/timezone/json?location="+lat+","+lon+"&timestamp="+response.data.sys.sunrise+"&key=AIzaSyBOv4sSajL69MzT9ADx1y3-BHkaH7-sI-M")
 						.then(function(Gresponse) {

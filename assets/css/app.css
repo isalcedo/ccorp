@@ -1,3 +1,6 @@
+body * {
+	font-family: 'Roboto Condensed', sans-serif;
+}
 div.zip_code {
 	display: none;
 }
@@ -7,4 +10,97 @@ div.zip_code {
 #ask_zip_code select {
 	width: 30%;
 	margin: 0;
+}
+.row.top {
+	background: #03A9F4;
+	padding: 1rem 0;
+	margin-bottom: 1rem;
+}
+.top h3 {
+	margin: 0;
+}
+h3 {
+	text-align: center;
+	color: #fff;
+}
+.btn_check_action {
+	width: 100%;
+	display: block;
+	padding: 1rem 0;
+	text-align: center;
+	color: #0288D1;
+	border-radius: 3px;
+	transition: ease-in-out 0.3s all;
+	margin-bottom: 1rem;
+}
+.btn_check_action:hover,
+.btn_check_action.active {
+	color: #fff;
+	background: #03A9F4;
+	-webkit-box-shadow: 0px 4px 8px 0px rgba(50, 50, 50, 0.4);
+	-moz-box-shadow:    0px 4px 8px 0px rgba(50, 50, 50, 0.4);
+	box-shadow:         0px 4px 8px 0px rgba(50, 50, 50, 0.4);
+}
+#ask_zip_code i {
+	font-size: 1rem;
+	line-height: 1rem;
+}
+p,
+#ask_zip_code select,
+ #ask_zip_code input {
+	color: #777;
+}
+#ask_zip_code option {
+	color: #03A9F4;
+}
+#ask_zip_code select,
+#ask_zip_code input {
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: 2px #999 solid;
+	box-shadow: none;
+	transition: ease-in-out 0.3s all;
+}
+#ask_zip_code input {
+	margin-right: 3px;
+}
+#ask_zip_code input:focus,
+#ask_zip_code input:active,
+#ask_zip_code select:focus,
+#ask_zip_code select:active {
+	border-bottom: 2px #03A9F4 solid;
+	color: #03A9F4;
+}
+p.help-text {
+	color: #999;
+}
+div.tec-info {
+	padding: 1rem;
+	text-align: center;
+	background: url(../img/vintage-eyeglasses.svg) no-repeat 5% top #536DFE;
+	margin-bottom: 1rem;
+}
+div.tec-info p {
+	margin: 0;
+	color: #fff;
+}
+div.tec-info p span {
+	font-weight: 800;
+}
+h4.title {
+	font-weight: 800;
+	color: #0288D1;
+}
+.info_location p {
+	position: relative;
+}
+.info_location span {
+	font-weight: 800;
+	color: #0288D1;
+	font-style: italic;
+}
+.info_location .icon {
+	position: absolute;
+	top: -50%;
 }

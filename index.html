@@ -6,22 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ccorp - Task 1</title>
     <link rel="stylesheet" href="libs/foundation-sites/dist/foundation-flex.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">    
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/app.css">
   </head>
   <body>
-    <div class="row">
+    <div class="row expanded top">
       <div class="large-12 columns">
         <h3>Clever Weather Tool</h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="large-12 columns">
         <p>You can check the weather by providing your current location or find it by ZIP code or country</p>
 
         <section ng-app="getWeather" ng-init="icon=''" ng-controller="getWeatherController">
           <div class="row">
-            <div class="large-6 columns">
-              <a class="btn_affirmative" href="javascript:void(0)" ng-click="getGeo()">Get my location</a>
+            <div class="large-6 columns" ng-init="active = ''">
+              <a ng-class="{'active':active === 'btn_affirmative'}" class="btn_affirmative btn_check_action" href="javascript:void(0)" ng-click="active = 'btn_affirmative'; getGeo()">Get my location</a>
             </div>
             <div class="large-6 columns">
-              <a class="btn_negative" href="javascript:void(0)" ng-click="askZip()">Find by ZIP Code or Country</a>
+              <a ng-class="{'active':active === 'btn_negative'}" class="btn_negative btn_check_action" href="javascript:void(0)" ng-click="active = 'btn_negative'; askZip()">Find by ZIP Code or Country</a>
             </div>
           </div>
           <div class="row zip_code">
@@ -29,7 +35,7 @@
               <form id="ask_zip_code">
                 <div class="input-group">
                   <input type="text" placeholder="ZIP Code" aria-describedby="zipCountryHelp" class="input-group-field" id="input_zip_code" name="input_zip_code" ng-model="input_zip_code">
-                  <select class="input-group-field" ng-options="item as item.name for item in items track by item.alpha2" ng-model="select_countries">
+                  <select class="input-group-field" ng-options="item as item.name for item in countries track by item.alpha2" ng-model="select_countries">
                     <option value="" disabled="">Select a country</option>
                   </select>
                   <div class="input-group-button">
@@ -45,19 +51,19 @@
             <div ng-if="data">
               <div class="row">
                 <div class="large-12 columns tec-info">
-                  <p><span>Geek info.</span> Longitude: {{data.coord.lon}} - Latitude: {{data.coord.lat}}</p>
+                  <p><span>Geek info:</span> Longitude: {{data.coord.lon}} - Latitude: {{data.coord.lat}}</p>
                 </div>
               </div>
-              <div class="row">
+              <div class="row info_location">
                 <div class="large-6 columns">
                   <h4 class="title">Location</h4>
-                  <p>This is the Weather for {{data.name}} in {{data.sys.country}}.</p>
-                  <p>Sunrise is at {{sunrise | date:'HH:mm'}} and sunset is at {{sunset | date:'HH:mm'}}.</p>
+                  <p>This is the Weather for <span>{{data.name}}</span> in <span>{{country.name}}</span>.</p>
+                  <p>Sunrise is at <span>{{sunrise | date:'HH:mm'}}</span> and sunset is at <span>{{sunset | date:'HH:mm'}}</span>.</p>
                 </div>
                 <div class="large-6 columns">
                   <h4 class="title">Weather</h4>
-                  <p>Weather is: {{data.weather[0].main}}, with {{data.weather[0].description}} <img ng-src="{{icon}}" alt="Weather Icon"></p>
-                  <p>The current temperature is {{data.main.temp}} ºC</p>
+                  <p>Weather is: <span>{{data.weather[0].main}}</span>, with <span>{{data.weather[0].description}}</span> <img class="icon" ng-src="{{icon}}" alt="Weather Icon"></p>
+                  <p>The current temperature is <span>{{data.main.temp}} ºC</span></p>
                 </div>
               </div>
             </div>
@@ -70,6 +76,8 @@
     <script src="libs/jquery/dist/jquery.min.js"></script>
     <script src="libs/what-input/what-input.min.js"></script>
     <script src="libs/angular/angular.min.js"></script>
+    <script src="libs/moment/min/moment.min.js"></script>
+    <script src="libs/moment-timezone/builds/moment-timezone-with-data.min.js"></script>
     <script src="libs/foundation-sites/dist/foundation.min.js"></script>
     <script src="assets/js/app.js"></script>
   </body>

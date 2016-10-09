@@ -3,6 +3,7 @@ body * {
 }
 div.zip_code {
 	display: none;
+	margin-top: 1rem;
 }
 #weather_data {
 	display: none;
@@ -92,6 +93,10 @@ h4.title {
 	font-weight: 800;
 	color: #0288D1;
 }
+p.help-text.no-geo {
+	display: none;
+	color: #e87e7e;
+}
 .info_location p {
 	position: relative;
 }
@@ -103,4 +108,31 @@ h4.title {
 .info_location .icon {
 	position: absolute;
 	top: -50%;
+}
+.load-weather {
+	width: 100vw;
+	height: 100vh;
+	padding-top: calc(50vh - 113px);
+	vertical-align: middle;
+	text-align: center;
+	position: fixed;
+	top: 0;
+	background: rgba(255,255,255,0.8);
+	z-index: 99999;
+	display: none;
+}
+.load-weather .load-k > p {
+	font-size: 1.2rem;
+}
+.load-weather .load-k .clouds {
+  animation: nubes 1.2s steps(11) infinite;
+  background: url('../img/spriteLoading.svg')  0 0 no-repeat; 
+  height: 90px;
+  width: 150px;
+  margin: 0 auto 0.5rem;
+  display: inline-block;
+}
+@keyframes nubes {  
+  0% {background-position: 0 0; } 
+  100% {background-position: -1650px 0; } 
 }

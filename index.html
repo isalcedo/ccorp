@@ -11,6 +11,14 @@
     <link rel="stylesheet" href="assets/css/app.css">
   </head>
   <body>
+    <div class="load-weather">
+      <div class="load-k">
+        <div class="clouds">
+        </div>
+        <p>Please, wait a second.</p>
+      </div>
+    </div>
+
     <div class="row expanded top">
       <div class="large-12 columns">
         <h3>Clever Weather Tool</h3>
@@ -32,6 +40,7 @@
           </div>
           <div class="row zip_code">
             <div class="large-12 columns">
+              <p class="help-text no-geo">Oh! Sorry, we can't get your location. You can try looking for weather with ZIP Code or Country name.</p>
               <form id="ask_zip_code">
                 <div class="input-group">
                   <input type="text" placeholder="ZIP Code" aria-describedby="zipCountryHelp" class="input-group-field" id="input_zip_code" name="input_zip_code" ng-model="input_zip_code">
